@@ -1,0 +1,40 @@
+
+body {
+    background: linear-gradient(135deg, #141E30, #243B55);
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 15px;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    margin-top: 30px;
+}

@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #0f172a; 
+    color: #f8fafc;
+    text-align: center;
+    line-height: 1.6;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #1e293b;
+    border-bottom: 2px solid #38bdf8;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 600;
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: #38bdf8; 
+}
+
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+h1 { font-size: 3rem; margin-bottom: 15px; color: #f8fafc; }
+h2 { font-size: 2.2rem; margin-bottom: 20px; color: #38bdf8; }
+p { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 20px; }
+
+.btn {
+    display: inline-block;
+    padding: 10px 25px;
+    background: #38bdf8;
+    color: #0f172a;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    margin-top: 15px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: white;
+    color: #0f172a;
+}
+
+table {
+    margin: 30px auto;
+    border-collapse: collapse;
+    width: 60%;
+    background-color: #1e293b;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+th, td {
+    padding: 15px;
+    border-bottom: 1px solid #334155;
+}
+
+th {
+    background-color: #0f172a;
+    color: #38bdf8;
+}
+
+.form-box {
+    background: #1e293b;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+    border: 1px solid #334155;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #334155;
+    background: #0f172a;
+    color: white;
+    font-family: inherit;
+}

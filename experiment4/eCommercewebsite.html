@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishu's Tech Hub</title>
+    
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .product-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid #aaa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            width: 60%;
+            text-align: left;
+        }
+
+        .offer-box {
+            background-color: #ff9800;
+            color: black;
+            padding: 15px;
+            width: 50%;
+            margin: 0 auto;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        input[list] {
+            padding: 8px;
+            border-radius: 4px;
+            border: none;
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1> KRISHU'S TECH HUB</h1>
+        <p><i>Welcome to the best electronic store!</i></p>
+        
+        <nav>
+            <a href="#" style="color: yellow;">Home</a> |
+            <a href="#" style="color: white;">Laptops</a> |
+            <a href="#" style="color: white;">Mobiles</a> |
+            <a href="#" style="color: white;">Cart (2)</a>
+        </nav>
+    </header>
+
+    <hr>
+
+    <div style="margin-top: 20px;">
+        <label for="search">Search Gadgets: </label>
+        <input list="gadgets" id="search" name="search" placeholder="Type here...">
+        <datalist id="gadgets">
+            <option value="Wireless Mouse">
+            <option value="Gaming Keyboard">
+            <option value="Bluetooth Headphones">
+        </datalist>
+        <button type="button">Search</button>
+    </div>
+
+    <br><br>
+
+    <main>
+        
+        <section>
+            <h2 style="color: lightgreen; text-decoration: underline;"> Featured Products</h2>
+
+            <article class="product-card">
+                <h3 style="color: #38bdf8;">1. Headphones</h3>
+                
+                <figure>
+                    <img width="150" src="https://imgs.search.brave.com/wrqqSKvuZCING3M4vmSNKor3zxNI83cBVXzxAtoXePA/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMucHJlc3RpZ2Vv/bmxpbmUuY29tL3dw/LWNvbnRlbnQvdXBs/b2Fkcy9zaXRlcy84/LzIwMjQvMDMvMDYx/NTI1MTQvMjQxX2V4/dF8wMV9lbl8wLmpw/ZWc" alt="Headphones">
+                    <figcaption style="font-size: 14px; color: lightgray;">High-Bass Bluetooth Headphones</figcaption>
+                </figure>
+                
+                <p><b>Price:</b> ₹2,499</p>
+                
+                <label>Stock Available: </label>
+                <meter value="8" min="0" max="10" low="3" high="7" optimum="10"></meter> 
+                <span style="color: lightgreen;">(In Stock)</span>
+                
+                <br><br>
+
+                <details>
+                    <summary style="color: yellow; cursor: pointer; font-weight: bold;">Show Specifications</summary>
+                    <ul>
+                        <li>Battery: 40 Hours</li>
+                        <li>Noise Cancellation: Yes</li>
+                    </ul>
+                </details>
+                
+                <br>
+                <button type="button">Add to Cart</button>
+            </article>
+
+            <article class="product-card">
+                <h3 style="color: #38bdf8;">2. Smartwatch V2</h3>
+                
+                <figure>
+                    <img width="80" src="https://imgs.search.brave.com/1LOSAFiMLn_8bHCL15vZEaGmDL3lwZ4MN4qDWUQehj0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG40/LmV0aG9zd2F0Y2hl/cy5jb20vdGhlLXdh/dGNoLWd1aWRlL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDIzLzA0/L0J1bGdhcmktT2N0/by1Sb21hLUNhcmls/bG9uLVRvdXJiaWxs/b24tYmxhY2stdGl0/YW5pdW0tY2FzZS10/b3AtMTAtZXhwZW5z/aXZlLXdhdGNoZXMu/anBnLmpwZw" alt="Smartwatch">
+                    <figcaption style="font-size: 14px; color: lightgray;">Amoled Display Fitness Tracker</figcaption>
+                </figure>
+
+                <p><b>Price:</b> ₹1,999</p>
+                
+                <label>Stock Available: </label>
+                <meter value="2" min="0" max="10" low="3" high="7" optimum="10"></meter> 
+                <span style="color: red; font-weight: bold;">(Only 2 left!)</span>
+                
+                <br><br>
+
+                <details>
+                    <summary style="color: yellow; cursor: pointer; font-weight: bold;">Show Specifications</summary>
+                    <ul>
+                        <li>Display: 1.75" AMOLED</li>
+                        <li>Heart Rate Monitor: Yes</li>
+                    </ul>
+                </details>
+                
+                <br>
+                <button type="button">Add to Cart</button>
+            </article>
+
+        </section>
+
+        <br><br>
+
+        <aside class="offer-box">
+            <mark style="background-color: white; padding: 2px 5px;">⚡ OFFER OF THE DAY:</mark>
+            <p style="margin-top: 10px;">Get a free Gaming Mousepad on orders above ₹3,000 by Krishu</p>
+        </aside>
+
+    </main>
+
+    <footer>
+        <label>Free Shipping Goal: </label>
+        <progress value="70" max="100"></progress> 
+        <span>70%</span>
+        
+        <p>&copy; 2026 Krishu's Tech Hub.</p>
+        <p><small>Created for Exercise 2 using Advanced HTML Tags & CSS</small></p>
+    </footer>
+
+</body>
+</html>
