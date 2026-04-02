@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
 
 :root {
-    --bg-gradient: linear-gradient(45deg, #1fa2ff, #12d8fa, #a6ffcb);
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --accent-color: #00ff88;
-    --operator-color: #ff9d00;
-    --clear-color: #ff4b2b;
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --accent-color: #8b5cf6;
+    --operator-color: #3b82f6;
+    --clear-color: #ef4444;
     --text-primary: #ffffff;
 }
 
