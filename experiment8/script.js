@@ -5,7 +5,7 @@ const buttons = document.querySelectorAll('.btn');
 let currentExpression = '';
 let isError = false;
 
-// Map visual operators to script safe ones
+// Converting UI symbols (like ×) into actual math operators (like *) so the backend understands them
 const symbolMap = {
     '÷': '/',
     '×': '*',
@@ -14,7 +14,7 @@ const symbolMap = {
 
 function updateDisplay() {
     display.textContent = currentExpression || '0';
-    // auto scroll to end
+    // Auto-scroll the display to the right when a user types a very long equation
     display.scrollLeft = display.scrollWidth;
 }
 
@@ -30,7 +30,7 @@ buttons.forEach(btn => {
         let val = btn.dataset.val;
 
         if (val) {
-            // translate visual to compute
+            // Swap out pretty symbols for actual code symbols
             if (symbolMap[val]) val = symbolMap[val];
             currentExpression += val;
             updateDisplay();
@@ -39,7 +39,7 @@ buttons.forEach(btn => {
             historyDisplay.textContent = '';
             updateDisplay();
         } else if (action === 'delete') {
-            // smart delete for functions
+            // Instead of deleting letter by letter, let's delete whole functions like "sin(" together at once!
             if (currentExpression.endsWith('sin(') || currentExpression.endsWith('cos(') || currentExpression.endsWith('tan(') || currentExpression.endsWith('log(')) {
                 currentExpression = currentExpression.slice(0, -4);
             } else if (currentExpression.endsWith('sqrt(')) {
@@ -57,7 +57,7 @@ buttons.forEach(btn => {
         }
     });
 
-    // Handle button aesthetic feedback
+    // Making the buttons feel squishy and real when clicked (like a physical calculator)
     btn.addEventListener('mousedown', () => {
         btn.style.transform = 'scale(0.92)';
     });
@@ -72,7 +72,7 @@ buttons.forEach(btn => {
 async function evaluateExpression() {
     if (!currentExpression) return;
     
-    // Save history visually
+    // Push the old equation upstairs to the history bar so the user can see what they just calculated
     historyDisplay.textContent = currentExpression + ' =';
     display.textContent = '...';
 
@@ -91,7 +91,7 @@ async function evaluateExpression() {
             display.textContent = data.error;
             isError = true;
         } else {
-            // Check for floating point precision issues by rounding to 8 decimals
+            // Fixing that annoying computer math glitch where 0.1 + 0.2 equals 0.30000000004
             let result = Number(Math.round(data.result + 'e8') + 'e-8');
             currentExpression = result.toString();
             updateDisplay();
@@ -103,7 +103,7 @@ async function evaluateExpression() {
     }
 }
 
-// Keyboard support
+// Letting the user type directly with their keyboard so they don't have to click the fancy UI buttons!
 document.addEventListener('keydown', (e) => {
     const key = e.key;
     if (/[0-9\+\-\*\/\.\(\)\^%]/.test(key)) {

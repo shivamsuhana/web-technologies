@@ -1,31 +1,31 @@
 <?php
-// Handle AJAX Calculation Request for Scientific Calculator
+// Wait for the Javascript frontend to send an equation here to calculate it
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['calculate'])) {
     header('Content-Type: application/json');
     $data = json_decode(file_get_contents('php://input'), true);
     
     $expr = $data['expression'] ?? '';
     
-    // Safety check 1: Only allow numbers, basic math operators, parens, spaces, and letters (for functions)
+    // Security check 1: Don't let users type weird symbols (hackers love weird symbols)
     if (preg_match('/[^0-9\.\+\-\*\/\^\(\)\s%a-z]/i', $expr)) {
         echo json_encode(['error' => 'Invalid characters in expression.']);
         exit;
     }
     
-    // Safety check 2: Ensure no unapproved words/functions are passed (prevent code injection like system())
+    // Security check 2: Make sure the letters they sent are actually math functions like 'sin' and not a hacking command
     $test_expr = str_ireplace(['sin', 'cos', 'tan', 'sqrt', 'log', 'ln', 'pi', 'e'], '', $expr);
     if (preg_match('/[a-z]/i', $test_expr)) {
         echo json_encode(['error' => 'Invalid mathematical functions used.']);
         exit;
     }
 
-    // Safety check 3: Execution limits
+    // Security check 3: Stop equations that are way too long (prevents the server from crashing/slowing down)
     if (strlen($expr) > 200) {
          echo json_encode(['error' => 'Expression limits exceeded.']);
          exit;
     }
     
-    // Replace visual calculus keywords with PHP math operators/constants
+    // PHP understands things differently, so we swap "pi" with "M_PI" and "^" with "**" before running
     $php_expr = str_ireplace(
         ['sin(', 'cos(', 'tan(', 'sqrt(', 'log(', 'ln(', 'pi', 'e', '^'],
         ['sin(', 'cos(', 'tan(', 'sqrt(', 'log10(', 'log(', 'M_PI', 'M_E', '**'],
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['calculate'])) {
     );
     
     try {
-        // Suppress warnings for typical invalid math situations (e.g., divide by zero)
+        // Silently catch dumb math mistakes like dividing by zero so PHP doesn't spit out ugly errors to the frontend
         ob_start();
         $result = eval('return ' . $php_expr . ';');
         ob_end_clean();
