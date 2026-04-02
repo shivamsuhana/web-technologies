@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
 
 :root {
-    --bg-gradient: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+    --bg-gradient: linear-gradient(45deg, #1fa2ff, #12d8fa, #a6ffcb);
     --glass-bg: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
     --accent-color: #00ff88;
