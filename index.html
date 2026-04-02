@@ -33,7 +33,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 4rem 2rem;
+            padding: 6rem 4rem; /* Increased outer space here */
             position: relative;
             overflow-x: hidden;
         }
@@ -83,7 +83,7 @@
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
+            gap: 2.8rem; /* Increased gap */
             width: 100%;
             max-width: 1200px;
             z-index: 10;
@@ -228,7 +228,7 @@
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             .grid-container { grid-template-columns: 1fr; padding: 0 1rem; }
-            body { padding: 2rem 1rem; }
+            body { padding: 3rem 1.5rem; } /* Adjusted mobile padding slightly */
         }
     </style>
 </head>
