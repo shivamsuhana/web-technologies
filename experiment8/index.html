@@ -3,12 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>PHP Learning - Experiment 8</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --accent: #3b82f6;
+            --text-main: #f8fafc;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+        h1 { color: var(--accent); margin-bottom: 30px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            background: rgba(51, 65, 85, 0.9);
+        }
+        .card h3 { color: var(--accent); margin-top: 0; }
+        .card p { font-size: 0.9rem; color: #94a3b8; }
+        .tag {
+            font-size: 0.7rem;
+            background: var(--accent);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+    </style>
 </head>
 <body>
-    <h1>This is experiment 8</h1>
-    <h2>In experiment 8 we have to do some task. 
-        I completed that... and proofs are given below⬇️
-    </h2>
+    <div class="container">
+        <h1>PHP Learning Roadmap — Experiment 8</h1>
+        <p>I have completed all the PHP fundamental exercises. You can click on the links below to see the output and take screenshots for your submission.</p>
+        
+        <div class="grid">
+            <!-- Exercise 1 -->
+            <a href="info.php" class="card" target="_blank">
+                <span class="tag">Exercise 1</span>
+                <h3>Environment Verification</h3>
+                <p>Output of phpinfo() to verify PHP installation and active extensions.</p>
+            </a>
+
+            <!-- Exercise 2 -->
+            <a href="phptest/index.php" class="card" target="_blank">
+                <span class="tag">Exercise 2</span>
+                <h3>Built-in Server Test</h3>
+                <p>Verifying page loading and server logging via multiple routes.</p>
+            </a>
+
+            <!-- Exercise 3 -->
+            <a href="profile.php" class="card" target="_blank">
+                <span class="tag">Exercise 3.1</span>
+                <h3>Profile & Debug</h3>
+                <p>Working with variables, echo, var_dump(), and pre-formatted text.</p>
+            </a>
+
+            <a href="constants.php" class="card" target="_blank">
+                <span class="tag">Exercise 3.2</span>
+                <h3>PHP Constants</h3>
+                <p>Defining constants and understanding single vs double quotes difference.</p>
+            </a>
+
+            <a href="data_types.php" class="card" target="_blank">
+                <span class="tag">Exercise 3.3</span>
+                <h3>Data Types Logic</h3>
+                <p>Verifying scalar and compound types using gettype() and is_* functions.</p>
+            </a>
+
+            <!-- Challenge -->
+            <a href="sysinfo.php" class="card" target="_blank">
+                <span class="tag">Challenge</span>
+                <h3>System Info Dashboard</h3>
+                <p>A polished UI displaying PHP constants, Server superglobals, and Foreach loops.</p>
+            </a>
+        </div>
+
+        <div style="margin-top: 50px; padding: 20px; border: 1px dashed #444; border-radius: 8px;">
+            <h3>Instructions:</h3>
+            <ol>
+                <li>Click each card to open the PHP page in a new tab.</li>
+                <li>Take a screenshot of each output for your report.</li>
+                <li>Don't forget to delete <code>info.php</code> after you are done for security!</li>
+            </ol>
+        </div>
+    </div>
 </body>
 </html>
