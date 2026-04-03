@@ -25,8 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['calculate'])) {
          exit;
     }
     
-    // Convert trigonometry functions to use Degrees (by wrapping input in deg2rad)
-    $php_expr = preg_replace('/(sin|cos|tan)\(([^)]+)\)/i', '$1(deg2rad($2))', $expr);
+    // Convert trigonometry functions to use Degrees safely (multiply by PI/180)
+    $php_expr = preg_replace('/(sin|cos|tan)\(([^)]+)\)/i', '$1((M_PI/180)*($2))', $expr);
 
     // PHP understands things differently, so we swap remaining constants and operators
     $php_expr = str_ireplace(
