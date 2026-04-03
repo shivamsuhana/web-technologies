@@ -3,12 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Experiment 8: Submission Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0b0f19;
+            --card-bg: #161b22;
+            --accent: #58a6ff;
+            --text: #c9d1d9;
+            --border: #30363d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 4rem 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 800px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #79c0ff, #d2a8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .alert-box {
+            background: rgba(88, 166, 255, 0.1);
+            border: 1px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .alert-box p { font-size: 1.1rem; color: #79c0ff; line-height: 1.6; }
+        .alert-box code { background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; color: white; }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .proof-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .proof-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+
+        .image-container {
+            width: 100%;
+            height: 300px;
+            background: #0d1117;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Logic for missing images */
+        .image-container img:not([src]), 
+        .image-container img[src=""] { display: none; }
+
+        .placeholder-text {
+            color: #484f58;
+            font-size: 1.1rem;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .card-content { padding: 1.5rem; }
+        .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+        .card-header h3 { font-size: 1.4rem; color: white; }
+        .badge { background: #238636; color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+
+        .card-content p { color: #8b949e; line-height: 1.5; font-size: 1rem; }
+
+        @media (max-width: 768px) {
+            .gallery-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2.2rem; }
+        }
+    </style>
 </head>
 <body>
-    <h1>This is experiment 8</h1>
-    <h2>In experiment 8 we have to do some task. 
-        I completed that... and proofs are given below⬇️
-    </h2>
+
+    <header>
+        <h1>Experiment 8 Submission</h1>
+        <p>Lab Proofs for PHP & Advanced CSS Concepts</p>
+    </header>
+
+    <div class="alert-box">
+        <p>
+            <strong>Bhai dhyaan se suno:</strong> Apne screenshots ko issi folder (<code>experiment8/</code>) me daal do aur unka naam ye rakho: <br>
+            <code>ex1.png</code>, <code>ex2.png</code>, <code>ex3.png</code>, aur <code>ex4.png</code>. <br>
+            Wo yahan apne aap chamakne lagenge! ✨
+        </p>
+    </div>
+
+    <div class="gallery-grid">
+        <!-- Exercise 1 -->
+        <div class="proof-card">
+            <div class="image-container">
+                <img src="ex1.png" alt="Exercise 1 Screenshot" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                <div class="placeholder-text" style="display:none;">
+                    📸 Screenshot Missing<br><small>Upload 'ex1.png' to see it here</small>
+                </div>
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <h3>Exercise 1</h3>
+                    <span class="badge">Completed</span>
+                </div>
+                <p>Recreation of the CSS Box Model using nested divs (Margin, Border, Padding, Content).</p>
+            </div>
+        </div>
+
+        <!-- Exercise 2 -->
+        <div class="proof-card">
+            <div class="image-container">
+                <img src="ex2.png" alt="Exercise 2 Screenshot" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                <div class="placeholder-text" style="display:none;">
+                    📸 Screenshot Missing<br><small>Upload 'ex2.png' to see it here</small>
+                </div>
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <h3>Exercise 2</h3>
+                    <span class="badge">Completed</span>
+                </div>
+                <p>Polished Profile Card component with avatars, headings, and precise spacing.</p>
+            </div>
+        </div>
+
+        <!-- Exercise 3 -->
+        <div class="proof-card">
+            <div class="image-container">
+                <img src="ex3.png" alt="Exercise 3 Screenshot" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                <div class="placeholder-text" style="display:none;">
+                    📸 Screenshot Missing<br><small>Upload 'ex3.png' to see it here</small>
+                </div>
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <h3>Exercise 3</h3>
+                    <span class="badge">Completed</span>
+                </div>
+                <p>Horizontal Navigation Bar demonstrating the differences between padding and margin click-areas.</p>
+            </div>
+        </div>
+
+        <!-- Exercise 4 -->
+        <div class="proof-card">
+            <div class="image-container">
+                <img src="ex4.png" alt="Exercise 4 Screenshot" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                <div class="placeholder-text" style="display:none;">
+                    📸 Screenshot Missing<br><small>Upload 'ex4.png' to see it here</small>
+                </div>
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <h3>Exercise 4</h3>
+                    <span class="badge">Completed</span>
+                </div>
+                <p>Box-sizing Comparison: Visual proof of content-box vs border-box rendering logic.</p>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
