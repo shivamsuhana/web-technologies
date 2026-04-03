@@ -25,11 +25,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['calculate'])) {
          exit;
     }
     
-    // PHP understands things differently, so we swap "pi" with "M_PI" and "^" with "**" before running
+    // Convert trigonometry functions to use Degrees (by wrapping input in deg2rad)
+    $php_expr = preg_replace('/(sin|cos|tan)\(([^)]+)\)/i', '$1(deg2rad($2))', $expr);
+
+    // PHP understands things differently, so we swap remaining constants and operators
     $php_expr = str_ireplace(
-        ['sin(', 'cos(', 'tan(', 'sqrt(', 'log(', 'ln(', 'pi', 'e', '^'],
-        ['sin(', 'cos(', 'tan(', 'sqrt(', 'log10(', 'log(', 'M_PI', 'M_E', '**'],
-        $expr
+        ['sqrt(', 'log(', 'ln(', 'pi', 'e', '^'],
+        ['sqrt(', 'log10(', 'log(', 'M_PI', 'M_E', '**'],
+        $php_expr
     );
     
     try {
