@@ -1,6 +1,6 @@
 # 🚀 Krishu's Coddy Zone
 
-> A comprehensive web technologies learning journey showcasing modern web development skills through 9 progressive experiments.
+> A comprehensive web technologies learning journey showcasing modern web development skills through 9 progressive experiments and a project.
 
 ---
 
