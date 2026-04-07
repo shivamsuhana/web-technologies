@@ -256,48 +256,6 @@ web-technologies/
 
 ---
 
-## 🚀 Usage Examples
-
-### Running the Main Landing Page
-```bash
-# Navigate to project root
-cd web-technologies
-
-# Open in browser
-open index.html
-
-# Or serve via local server
-python3 -m http.server 8000
-# Visit http://localhost:8000
-```
-
-### Accessing Individual Experiments
-```bash
-# Access any experiment via browser
-http://localhost:8000/experiment5/
-http://localhost:8000/experiment8/
-http://localhost:8000/experiment9/
-```
-
-### Running PHP Experiments
-```bash
-# For experiment 8
-cd experiment8
-php -S localhost:8000
-
-# For experiment 9
-cd experiment9
-php -S localhost:8000
-```
-
-### Running RaktSetu Project
-```bash
-cd project
-php -S localhost:8000
-# Visit http://localhost:8000
-```
-
----
 
 ## 🔑 Key Features
 
