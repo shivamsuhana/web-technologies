@@ -1,22 +1,71 @@
 # 🚀 Krishu's Coddy Zone
 
-> A comprehensive web technologies learning journey showcasing modern web development skills through 9 progressive experiments and a project.
+> A comprehensive web technologies portfolio showcasing modern development through 9 progressive experiments and a production-ready full-stack project.
 
 ---
 
 ## 📋 Overview
 
-Welcome to **Krishu's Coddy Zone** – a hands-on project demonstrating practical knowledge of web development fundamentals and advanced concepts. This repository contains a series of experiments that progressively build upon foundational HTML/CSS/JavaScript skills and extend into backend technologies.
+Welcome to **Krishu's Coddy Zone** – a hands-on portfolio demonstrating practical knowledge of web development fundamentals, advanced concepts, and real-world application development. This repository contains:
+
+✅ **9 Progressive Learning Experiments** - From basic HTML to advanced PHP and JavaScript  
+✅ **RaktSetu Project** - A complete full-stack emergency blood donor network platform
+
+---
+
+## ⭐ Featured Project: RaktSetu
+
+<div align="center">
+
+### 🩸 RaktSetu — Emergency Blood Donor Network & Real-Time SOS Platform
+
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen.svg?style=for-the-badge)](http://raktsetu.page.gd/)
+[![PHP](https://img.shields.io/badge/PHP-8.0+-777BB4.svg?style=for-the-badge&logo=php&logoColor=white)](https://php.net/)
+[![MySQL](https://img.shields.io/badge/MySQL-Normalized-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)](https://mysql.com/)
+
+> *"One donation can save three lives. RaktSetu makes sure that donation happens in time."*
+
+</div>
+
+### 🚨 The Problem
+Finding the exact blood type during medical emergencies is chaotic, stressful, and time-consuming. Patients' families usually rely on social media messages or manual calls to blood banks. **This critical delay costs lives.**
+
+### 💡 The Solution
+**RaktSetu** automates the emergency SOS process. When an urgent blood request is raised, the platform instantly filters nearby eligible donors (enforcing 90-day health cooldown) and alerts them in real time.
+
+### ✨ Core Features
+- 🎯 **Smart Matching** — Instantly connects donors and patients by blood group and location
+- ⏳ **Eligibility Engine** — Tracks safe donation intervals (90-day cooldown) to protect donor health
+- 🚨 **Live Emergency Board** — Real-time, auto-refreshing dashboard for urgent requests
+- 👥 **Multi-User Portals** — Secure dashboards for Donors, Hospitals/Blood Banks, and Admins
+- 🔒 **Enterprise Security** — bcrypt password hashing, prepared statements, RBAC
+
+### 🛠️ RaktSetu Tech Stack
+- **Frontend:** HTML5, CSS3, Vanilla JavaScript, Responsive Design
+- **Real-Time Logic:** Asynchronous AJAX polling for instant updates
+- **Backend:** PHP 8.0+
+- **Database:** MySQL with Normalized Schema
+- **Data Access:** PDO (PHP Data Objects)
+- **Security:** Secure hashing, SQL injection prevention, Role-Based Access Control
+
+### 🚀 Try RaktSetu Live
+👉 **[Launch RaktSetu Live Demo](http://raktsetu.page.gd/)**
+
+**Demo Accounts:**
+- 👤 **Admin:** `admin@raktsetu.org` / `Admin@123`
+- 🩸 **Donor:** `arjun@demo.com` / `Donor@123`
+- 🏥 **Hospital:** `staff@aiims.com` / `Donor@123`
 
 ---
 
 ## 🎯 Project Highlights
 
-- **9 Comprehensive Experiments** - From basic HTML to advanced PHP and JavaScript
+- **Full-Stack Real-World Project** - RaktSetu: Production-ready blood donation platform with enterprise-grade security
+- **9 Progressive Learning Experiments** - From basic HTML to advanced PHP and JavaScript
 - **Modern UI Design** - Dark theme with gradient accents and smooth animations
-- **Full-Stack Coverage** - Frontend technologies + backend PHP integration
-- **Responsive Design** - Mobile-friendly layouts and interactive components
-- **Real-World Patterns** - E-commerce layouts, forms, databases, and more
+- **Enterprise Architecture** - Full database design, security, real-time updates, and AJAX integration
+- **Responsive Design** - Mobile-friendly layouts across all projects
+- **Real-World Patterns** - E-commerce, forms, databases, emergency systems, and SOS notifications
 
 ---
 
@@ -206,6 +255,8 @@ Text Secondary:        #94a3b8 (Gray)
 web-technologies/
 ├── index.html                 # Landing page
 ├── test_math.php             # PHP testing file
+├── project/                  # RaktSetu Full-Stack Project
+│   └── index.html            # RaktSetu landing & demo
 ├── experiment1/              # Personal portfolio
 ├── experiment2/              # E-commerce basics
 ├── experiment3/              # Styled portfolio
@@ -241,6 +292,15 @@ python3 -m http.server 8000
 # Visit http://localhost:8000
 ```
 
+### Accessing RaktSetu Project
+```bash
+# View RaktSetu landing page
+http://localhost:8000/project/
+
+# Or visit live demo
+https://raktsetu.page.gd/
+```
+
 ### Accessing Individual Experiments
 ```bash
 # Access any experiment via browser
@@ -249,7 +309,7 @@ http://localhost:8000/experiment8/
 http://localhost:8000/experiment9/
 ```
 
-### Running PHP Experiments
+### Running PHP Experiments & Projects
 ```bash
 # For experiment 8
 cd experiment8
@@ -257,6 +317,10 @@ php -S localhost:8000
 
 # For experiment 9
 cd experiment9
+php -S localhost:8000
+
+# For RaktSetu project
+cd project
 php -S localhost:8000
 ```
 
