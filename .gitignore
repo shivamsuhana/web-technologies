@@ -1,0 +1,30 @@
+# Database configurations
+config.php
+experiment9/config.php
+experiment8/config.php
+
+# Environment variables
+.env
+.env.*
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Node modules (if needed in future)
+node_modules/
+
+# Compiled files
+*.class
+*.o
+
+# OS generated files
+Thumbs.db
+.AppleDouble
+.LSOverride

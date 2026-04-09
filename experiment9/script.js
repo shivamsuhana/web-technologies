@@ -1,126 +1,77 @@
-const display = document.getElementById('display');
-const historyDisplay = document.getElementById('history');
-const buttons = document.querySelectorAll('.btn');
+const themeSelect = document.getElementById('theme');
+const copyBtn = document.getElementById('copy-btn');
+const downloadBtn = document.getElementById('download-btn');
+const table = document.getElementById('data-table');
 
-let currentExpression = '';
-let isError = false;
-
-// Converting UI symbols (like ×) into actual math operators (like *) so the backend understands them
-const symbolMap = {
-    '÷': '/',
-    '×': '*',
-    '−': '-'
-};
-
-function updateDisplay() {
-    display.textContent = currentExpression || '0';
-    // Auto-scroll the display to the right when a user types a very long equation
-    display.scrollLeft = display.scrollWidth;
+// Handle Theme Change Live
+if (themeSelect) {
+    themeSelect.addEventListener('change', (e) => {
+        document.body.className = e.target.value;
+    });
 }
 
-buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        if (isError) {
-            currentExpression = '';
-            isError = false;
-            historyDisplay.textContent = '';
-        }
-
-        const action = btn.dataset.action;
-        let val = btn.dataset.val;
-
-        if (val) {
-            // Swap out pretty symbols for actual code symbols
-            if (symbolMap[val]) val = symbolMap[val];
-            currentExpression += val;
-            updateDisplay();
-        } else if (action === 'clear') {
-            currentExpression = '';
-            historyDisplay.textContent = '';
-            updateDisplay();
-        } else if (action === 'delete') {
-            // Instead of deleting letter by letter, let's delete whole functions like "sin(" together at once!
-            if (currentExpression.endsWith('sin(') || currentExpression.endsWith('cos(') || currentExpression.endsWith('tan(') || currentExpression.endsWith('log(')) {
-                currentExpression = currentExpression.slice(0, -4);
-            } else if (currentExpression.endsWith('sqrt(')) {
-                currentExpression = currentExpression.slice(0, -5);
-            } else if (currentExpression.endsWith('ln(')) {
-                currentExpression = currentExpression.slice(0, -3);
-            } else if (currentExpression.endsWith('pi')) {
-                currentExpression = currentExpression.slice(0, -2);
-            } else if (currentExpression.length > 0) {
-                currentExpression = currentExpression.slice(0, -1);
-            }
-            updateDisplay();
-        } else if (action === 'equals') {
-            evaluateExpression();
-        }
-    });
-
-    // Making the buttons feel squishy and real when clicked (like a physical calculator)
-    btn.addEventListener('mousedown', () => {
-        btn.style.transform = 'scale(0.92)';
-    });
-    btn.addEventListener('mouseup', () => {
-        btn.style.transform = '';
-    });
-    btn.addEventListener('mouseleave', () => {
-        btn.style.transform = '';
-    });
+// Ensure the theme matches the current selected default
+window.addEventListener('DOMContentLoaded', () => {
+    if (themeSelect) {
+        document.body.className = themeSelect.value;
+    }
 });
 
-async function evaluateExpression() {
-    if (!currentExpression) return;
-    
-    // Push the old equation upstairs to the history bar so the user can see what they just calculated
-    historyDisplay.textContent = currentExpression + ' =';
-    display.textContent = '...';
+// Copy to clipboard functionality
+if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+        if (!table) return;
 
-    try {
-        const response = await fetch('index.php?calculate=1', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ expression: currentExpression })
+        // We get rows, avoiding empty state rows
+        const rows = table.querySelectorAll('tbody tr:not(.empty-row)');
+        if (rows.length === 0) {
+            alert('No data to copy!');
+            return;
+        }
+
+        let textToCopy = 'ID\tName\tRole\tSkills\tTheme\tTime\n';
+        rows.forEach(row => {
+            const cells = row.querySelectorAll('td');
+            const rowData = Array.from(cells).map(cell => cell.textContent).join('\t');
+            textToCopy += rowData + '\n';
         });
-        
-        const data = await response.json();
-        
-        if (data.error) {
-            display.textContent = data.error;
-            isError = true;
-        } else {
-            // Fixing that annoying computer math glitch where 0.1 + 0.2 equals 0.30000000004
-            let result = Number(Math.round(data.result + 'e8') + 'e-8');
-            currentExpression = result.toString();
-            updateDisplay();
-        }
-    } catch (err) {
-        display.textContent = "Network Error";
-        console.error(err);
-        isError = true;
-    }
+
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            const originalText = copyBtn.innerHTML;
+            copyBtn.innerHTML = '✅ Copied!';
+            setTimeout(() => copyBtn.innerHTML = originalText, 2000);
+        });
+    });
 }
 
-// Letting the user type directly with their keyboard so they don't have to click the fancy UI buttons!
-document.addEventListener('keydown', (e) => {
-    const key = e.key;
-    if (/[0-9\+\-\*\/\.\(\)\^%]/.test(key)) {
-        e.preventDefault();
-        currentExpression += key;
-        updateDisplay();
-    } else if (key === 'Enter') {
-        e.preventDefault();
-        evaluateExpression();
-    } else if (key === 'Backspace') {
-        e.preventDefault();
-        currentExpression = currentExpression.slice(0, -1);
-        updateDisplay();
-    } else if (key === 'Escape') {
-        e.preventDefault();
-        currentExpression = '';
-        historyDisplay.textContent = '';
-        updateDisplay();
-    }
-});
+// Download CSV functionality
+if (downloadBtn) {
+    downloadBtn.addEventListener('click', () => {
+        if (!table) return;
+
+        const rows = table.querySelectorAll('tbody tr:not(.empty-row)');
+        if (rows.length === 0) {
+            alert('No data to download!');
+            return;
+        }
+
+        let csvContent = 'ID,Name,Role,Skills,Theme,Time\n';
+        rows.forEach(row => {
+            const cells = row.querySelectorAll('td');
+            // Escape commas in names/skills
+            const rowData = Array.from(cells).map(cell => `"${cell.textContent}"`).join(',');
+            csvContent += rowData + '\n';
+        });
+
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+
+        link.setAttribute('href', url);
+        link.setAttribute('download', 'database_records.csv');
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+}
