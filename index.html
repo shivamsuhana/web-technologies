@@ -18,7 +18,7 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <h3 style="font-size: 1.2rem; margin: 0;">🚀 Lab Dashboard</h3>
-        <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+        <button class="theme-toggle" id="themeToggle">☀️ Light Mode</button>
     </nav>
 
     <!-- Search Bar -->
@@ -243,18 +243,11 @@
 
         // Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
-        let isDark = true;
-
+        themeToggle.textContent = document.body.classList.contains('light-mode') ? '🌙 Dark Mode' : '☀️ Light Mode';
         themeToggle.addEventListener('click', () => {
-            isDark = !isDark;
-            if (isDark) {
-                document.body.style.background = 'linear-gradient(180deg, #0f172a 0%, #1a2847 100%)';
-                themeToggle.textContent = '☀️ Light Mode';
-            } else {
-                document.body.style.background = 'linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%)';
-                document.body.style.color = '#0f172a';
-                themeToggle.textContent = '🌙 Dark Mode';
-            }
+            document.body.classList.toggle('light-mode');
+            const isLightMode = document.body.classList.contains('light-mode');
+            themeToggle.textContent = isLightMode ? '🌙 Dark Mode' : '☀️ Light Mode';
         });
 
         // Back to Top Button

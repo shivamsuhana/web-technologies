@@ -3,6 +3,11 @@
             --bg-dark-light: #1a2847;
             --bg-light: #f8fafc;
             --bg-light-secondary: #f1f5f9;
+            --bg: var(--bg-dark);
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --card-hover: rgba(51, 65, 85, 0.9);
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
             --card-bg-dark: rgba(30, 41, 59, 0.7);
             --card-hover-dark: rgba(51, 65, 85, 0.9);
             --card-bg-light: rgba(255, 255, 255, 0.8);
@@ -31,12 +36,12 @@
         }
 
         body {
-            background-color: var(--bg-dark);
+            background-color: var(--bg);
             background-image:
                 radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.2) 0px, transparent 50%),
                 radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.2) 0px, transparent 50%),
                 radial-gradient(at 50% 50%, rgba(16, 185, 129, 0.1) 0px, transparent 70%);
-            color: var(--text-dark);
+            color: var(--text-main);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -54,7 +59,7 @@
             --card-hover: var(--card-hover-light);
             --text-main: var(--text-light);
             --text-sub: var(--text-sub-light);
-            color: var(--text-light);
+            color: var(--text-main);
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f0f9ff 100%);
             background-attachment: fixed;
             background-image:
