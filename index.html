@@ -1,333 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Krishu's Coddy Zone</title>
+    <title>Krishu's Coddy Zone - Advanced Web Lab</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --card-hover: rgba(51, 65, 85, 0.9);
-            --text-main: #f8fafc;
-            --text-sub: #94a3b8;
-            --accent1: #3b82f6;
-            --accent2: #8b5cf6;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Outfit', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg);
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 6rem 4rem; /* Increased outer space here */
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 4rem;
-            animation: fadeInDown 1s ease backwards;
-            position: relative;
-            z-index: 10;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--text-main), var(--text-sub));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
-        }
-
-        h1 span {
-            background: linear-gradient(135deg, #60a5fa, #c084fc);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            position: relative;
-        }
-        
-        h1 span::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #c084fc, transparent);
-            border-radius: 4px;
-        }
-
-        p.subtitle {
-            font-size: 1.2rem;
-            color: var(--text-sub);
-            font-weight: 300;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2.8rem; /* Increased gap */
-            width: 100%;
-            max-width: 1200px;
-            z-index: 10;
-        }
-
-        .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 2rem;
-            text-decoration: none;
-            color: var(--text-main);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 180px;
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp 0.8s ease backwards;
-        }
-
-        /* Staggered animation delays for loading magic */
-        .card:nth-child(1) { animation-delay: 0.1s; }
-        .card:nth-child(2) { animation-delay: 0.2s; }
-        .card:nth-child(3) { animation-delay: 0.3s; }
-        .card:nth-child(4) { animation-delay: 0.4s; }
-        .card:nth-child(5) { animation-delay: 0.5s; }
-        .card:nth-child(6) { animation-delay: 0.6s; }
-        .card:nth-child(7) { animation-delay: 0.7s; }
-        .card:nth-child(8) { animation-delay: 0.8s; }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-8px) scale(1.02);
-            background: var(--card-hover);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 20px rgba(59, 130, 246, 0.1);
-            border-color: rgba(96, 165, 250, 0.4);
-        }
-
-        .card:hover::before {
-            opacity: 1;
-        }
-
-        .card h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .card h2::after {
-            content: '→';
-            opacity: 0;
-            transform: translateX(-10px);
-            transition: all 0.3s ease;
-            color: var(--accent1);
-            font-size: 1.8rem;
-        }
-
-        .card:hover h2::after {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .card p {
-            color: var(--text-sub);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* Fun Tag Style for the Live PHP App */
-        .tag {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            animation: pulse 2s infinite;
-        }
-
-        /* Abstract shapes */
-        .shape {
-            position: absolute;
-            filter: blur(80px);
-            z-index: 1;
-            border-radius: 50%;
-            opacity: 0.4;
-        }
-        
-        .shape-1 {
-            width: 300px;
-            height: 300px;
-            background: #8b5cf6;
-            top: -100px;
-            right: -100px;
-        }
-        
-        .shape-2 {
-            width: 400px;
-            height: 400px;
-            background: #3b82f6;
-            bottom: -200px;
-            left: -100px;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .grid-container { grid-template-columns: 1fr; padding: 0 1rem; }
-            body { padding: 3rem 1.5rem; } /* Adjusted mobile padding slightly */
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
 
     <div class="shape shape-1"></div>
     <div class="shape shape-2"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <h3 style="font-size: 1.2rem; margin: 0;">🚀 Lab Dashboard</h3>
+        <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+    </nav>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search experiments by name, category, or description...">
+    </div>
+
+    <!-- Filter Tags -->
+    <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="html-css">HTML/CSS</button>
+        <button class="filter-btn" data-filter="javascript">JavaScript</button>
+        <button class="filter-btn" data-filter="php">PHP</button>
+        <button class="filter-btn" data-filter="fullstack">Full Stack</button>
+    </div>
+
+    <!-- Results Info -->
+    <div class="results-info">
+        Showing <span id="resultCount">11</span> experiments
+    </div>
 
     <header>
         <h1>Hi! Welcome to <br><span>KRISHU'S CODDY ZONE</span></h1>
         <p class="subtitle">An ultimate collection of my Web Technology laboratory experiments</p>
     </header>
 
-    <div class="grid-container">
-        
-        <a href="experiment1/index.html" class="card">
+    <div class="grid-container" id="gridContainer">
+
+        <a href="experiment1/index.html" class="card" data-category="html-css">
+            <span class="card-category">HTML/CSS</span>
             <div>
                 <h2>Experiment 1</h2>
                 <p>My very first web page, focusing on fundamental layout and HTML markup structure.</p>
             </div>
+            <div class="tags">
+                <span class="tag">HTML</span>
+            </div>
         </a>
 
-        <a href="experiment2/eCommercewebsite.html" class="card">
+        <a href="experiment2/eCommercewebsite.html" class="card" data-category="html-css">
+            <span class="card-category">HTML/CSS</span>
             <div>
                 <h2>Experiment 2</h2>
                 <p>A clean and simple eCommerce landing page design for a digital storefront.</p>
             </div>
+            <div class="tags">
+                <span class="tag">E-Commerce</span>
+            </div>
         </a>
 
-        <a href="experiment3/index.html" class="card">
+        <a href="experiment3/index.html" class="card" data-category="html-css">
+            <span class="card-category">HTML/CSS</span>
             <div>
                 <h2>Experiment 3</h2>
                 <p>An exploration of advanced CSS styling, custom typography, and dynamic color schemes.</p>
             </div>
+            <div class="tags">
+                <span class="tag">CSS</span>
+            </div>
         </a>
 
-        <a href="experiment4/eCommercewebsite.html" class="card">
+        <a href="experiment4/eCommercewebsite.html" class="card" data-category="html-css">
+            <span class="card-category">HTML/CSS</span>
             <div>
                 <h2>Experiment 4</h2>
                 <p>Complete eCommerce frontend architecture using modern CSS grid and responsive layouts.</p>
             </div>
+            <div class="tags">
+                <span class="tag">Grid</span>
+            </div>
         </a>
 
-        <a href="experiment5/index.html" class="card">
+        <a href="experiment5/index.html" class="card" data-category="javascript">
+            <span class="card-category">JavaScript</span>
             <div>
                 <h2>Experiment 5</h2>
-                <p>Standard Calculator: A client-side math tool built entirely with pure HTML, CSS, and vanilla JavaScript.</p>
+                <p>Standard Calculator: A client-side math tool built entirely with pure HTML, CSS, and vanilla
+                    JavaScript.</p>
+            </div>
+            <div class="tags">
+                <span class="tag">JavaScript</span>
             </div>
         </a>
 
-        <a href="experiment6/index.html" class="card">
+        <a href="experiment6/index.html" class="card" data-category="javascript">
+            <span class="card-category">JavaScript</span>
             <div>
                 <h2>Experiment 6</h2>
-                <p>Interative Form: Real-time data entry and live display using JavaScript DOM manipulation.</p>
+                <p>Interactive Form: Real-time data entry and live display using JavaScript DOM manipulation.</p>
+            </div>
+            <div class="tags">
+                <span class="tag">DOM</span>
             </div>
         </a>
 
-        <a href="experiment7/index.html" class="card">
+        <a href="experiment7/index.html" class="card" data-category="javascript">
+            <span class="card-category">JavaScript</span>
             <div>
                 <h2>Experiment 7</h2>
-                <p>Data Collector Pro: Features live table injection and automated CSV report generation for data exports.</p>
+                <p>Data Collector Pro: Features live table injection and automated CSV report generation for data
+                    exports.</p>
+            </div>
+            <div class="tags">
+                <span class="tag">Data</span>
             </div>
         </a>
 
-        <a href="experiment8/index.html" class="card">
+        <a href="experiment8/index.html" class="card" data-category="php">
+            <span class="card-category">PHP</span>
             <div>
                 <h2>Experiment 8</h2>
-                <p>PHP Fundamentals: A collection of exercises covering server verification, variables, data types, and system constants.</p>
+                <p>PHP Fundamentals: A collection of exercises covering server verification, variables, data types, and
+                    system constants.</p>
             </div>
-        </a><a href="https://exercise9.page.gd/" class="card" target="_blank">
+            <div class="tags">
+                <span class="tag">Backend</span>
+            </div>
+        </a>
+
+        <a href="http://calcibykrishuu.free.nf/experiment9/index.php" target="_blank" class="card"
+            data-category="fullstack">
             <span class="tag">Live On PHP</span>
+            <span class="card-category">Full Stack</span>
             <div>
                 <h2>Experiment 9</h2>
-                <p>Scientific Calculator: A full-stack application featuring a secure PHP backend for advanced mathematical evaluations.</p>
+                <p>Form Database Integration: A full-stack application with PHP backend and MySQL database for
+                    persistent data storage.</p>
+            </div>
+            <div class="tags">
+                <span class="tag">PHP</span>
+                <span class="tag">MySQL</span>
             </div>
         </a>
 
-        <!-- ex 9 ko maine infinity wale pe host kiya hai php ka code bhi wahi hai -->
-        <a href="http://calcibykrishuu.free.nf/experiment9/index.php" class="card" target="_blank">
+        <a href="http://calcibykrishuu.free.nf/calculator/index.php" target="_blank" class="card"
+            data-category="fullstack">
             <span class="tag">Live On PHP</span>
+            <span class="card-category">Full Stack</span>
             <div>
                 <h2>Experiment 10</h2>
-                <p>Scientific Calculator: A full-stack application featuring a secure PHP backend for advanced mathematical evaluations.</p>
+                <p>Scientific Calculator: A full-stack application featuring a secure PHP backend for advanced
+                    mathematical evaluations.</p>
+            </div>
+            <div class="tags">
+                <span class="tag">PHP</span>
+                <span class="tag">Math</span>
             </div>
         </a>
 
-        
-
-        <a href="project/index.html" class="card" target="_blank">
-            <span class="tag">Live On PHP</span>
+        <a href="project/index.html" target="_blank" class="card" data-category="fullstack">
+            <span class="tag">Live Now!</span>
+            <span class="card-category">Full Stack</span>
             <div>
                 <h2>PROJECT - RAKTSETU</h2>
-                <p>Scientific Calculator: A full-stack application featuring a secure PHP backend for advanced mathematical evaluations.</p>
+                <p>Blood Request & Coordination Platform: A comprehensive full-stack ecosystem built with PHP, MySQL,
+                    and modern web technologies.</p>
+            </div>
+            <div class="tags">
+                <span class="tag">Full Stack</span>
+                <span class="tag">Live</span>
             </div>
         </a>
-        
+
+        <div id="noResults" class="no-results" style="display: none;">
+            No experiments found matching your search. Try different keywords!
+        </div>
+
     </div>
 
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">⬆</button>
+
+    <script>
+        // Search and Filter Functionality
+        const searchInput = document.getElementById('searchInput');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.card:not(#noResults)');
+        const gridContainer = document.getElementById('gridContainer');
+        const noResults = document.getElementById('noResults');
+        const resultCount = document.getElementById('resultCount');
+        let currentFilter = 'all';
+
+        // Search functionality
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            filterCards(searchTerm, currentFilter);
+        });
+
+        // Filter functionality
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                const searchTerm = searchInput.value.toLowerCase();
+                filterCards(searchTerm, currentFilter);
+            });
+        });
+
+        function filterCards(searchTerm, category) {
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                const cardCategory = card.dataset.category;
+                const matchesSearch = text.includes(searchTerm);
+                const matchesCategory = category === 'all' || cardCategory === category;
+
+                if (matchesSearch && matchesCategory) {
+                    card.classList.remove('hidden');
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                    card.style.display = 'none';
+                }
+            });
+
+            resultCount.textContent = visibleCount;
+            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        let isDark = true;
+
+        themeToggle.addEventListener('click', () => {
+            isDark = !isDark;
+            if (isDark) {
+                document.body.style.background = 'linear-gradient(180deg, #0f172a 0%, #1a2847 100%)';
+                themeToggle.textContent = '☀️ Light Mode';
+            } else {
+                document.body.style.background = 'linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%)';
+                document.body.style.color = '#0f172a';
+                themeToggle.textContent = '🌙 Dark Mode';
+            }
+        });
+
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Add ripple effect on card click
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.zIndex = '20';
+            });
+            card.addEventListener('mouseleave', function () {
+                this.style.zIndex = '10';
+            });
+        });
+    </script>
 </body>
+
 </html>
